@@ -1,0 +1,694 @@
+warn("undetected version.")
+--[[local s,err=pcall(function()
+return game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("loading script made by water_hax")
+end)
+if not s then
+  game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("loading script made by water_hax","All")
+end]]
+owner = "SuperCoolGirll6969"
+local Pl = game:GetService("Players")
+local lp = game.Players.LocalPlayer
+local command = "/rain"
+local OwnerPlayer = game:GetService("Players"):FindFirstChild(owner)
+coroutine.wrap(function()
+  while task.wait() do
+    OwnerPlayer = game:GetService("Players"):FindFirstChild(owner)
+  end
+end)()
+print(OwnerPlayer)
+local OwnerCharacter = OwnerPlayer.Character
+
+local char = lp.Character or lp.CharacterAdded:Wait()
+local Hum = char:WaitForChild("Humanoid")
+local root = char:WaitForChild"HumanoidRootPart"
+local stop = false
+
+update=function()
+  OwnerPlayer.CharacterAdded:Connect(function(DD)
+     OwnerCharacter = DD
+  end)
+end
+coroutine.wrap(function()
+  while task.wait(5) do
+update()
+  end
+end)()
+
+local function Rain()
+    Hum = char:WaitForChild("Humanoid")
+    root = char:WaitForChild("HumanoidRootPart")
+    ownerRoot = OwnerCharacter:WaitForChild("HumanoidRootPart")
+
+    lp.CharacterAdded:Connect(function(CHAR)
+      char = CHAR
+      task.wait()
+    end)
+
+    char:FindFirstChild("HumanoidRootPart").CFrame = ownerRoot.CFrame * CFrame.new(0,30,0)
+task.wait(0.5)
+   Hum.Health = 0
+end
+
+local function Message(SS)
+  task.wait()
+  local s,err=pcall(function()
+  return game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(SS)
+  end)
+  if not s then
+      return game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(SS,"All")
+  end
+end
+local ff = Pl:GetPlayers()[math.random(1, #Pl:GetPlayers())]
+local RAID = {
+  "BOT RAID IN PROGRESS!",
+  "YOU CAN'T STOP THE RAID!",
+  "HA! YOUR GAME IS OURS NOW!",
+  "RAIDERS RULE THE CHAT!",
+  "EVERYONE RUN, THE RAID IS HERE!",
+  "SURRENDER OR FACE THE RAID!",
+  "FREE PETS AT PETSIMULATOR.COM! (not really)",
+  "YOU'VE BEEN RAIDED BY A PRO!",
+  "NICE GAME... TOO BAD IT'S RAIDED!",
+  "THE RAID NEVER ENDS!",
+  tostring(ff) .. " HAS BEEN RAIDED!",
+  "SPAM ALERT: THIS IS A RAID!",
+  "RAIDERS ARE LEGENDS!",
+  "UNSTOPPABLE RAID MODE ACTIVATED!",
+  "GOOD LUCK STOPPING US!",
+  "RAIDERS: 1, DEFENDERS: 0",
+  "WHAT A NOOB GAME, LOL",
+  "ALL YOUR BASE ARE BELONG TO US!",
+  "DON'T EVEN TRY TO STOP US!",
+  "EVERYONE JOIN THE RAID CREW!",
+  tostring(ff) .. " JOINED THE RAID PARTY!",
+  "RAIDING SINCE 2024!",
+  "EVERY GAME WE TOUCH GETS RAIDED!",
+}
+
+local rad = false
+local function raid()
+   while task.wait(0.3) do
+       if rad then
+           break
+       end
+
+       local s,err = pcall(function()
+    local random = RAID[math.random(1, #RAID)]
+   game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(random)
+       end)
+       if not s then
+        local random = RAID[math.random(1, #RAID)]
+         game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(random,"All")
+       end
+
+   end
+end
+local function Tp()
+  char:FindFirstChild("HumanoidRootPart").CFrame = OwnerCharacter:FindFirstChild("HumanoidRootPart").CFrame
+end
+local function changeOwner(new)
+  for i,v in next, game:GetService("Players"):GetPlayers() do
+       if string.find(v.Name, new) then
+           owner = v.Name
+           local s,err = pcall(function()
+           game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("new owner is : " .. owner)
+           end)
+           if not s then
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("new owner is : " .. owner,"All")
+           end
+       end
+    end
+end
+
+local function Tool()
+  lp.CharacterAdded:Connect(function(CHAR)
+    char = CHAR
+    task.wait()
+  end)
+  local backpack = lp.Backpack
+  for i,v in next, backpack:GetChildren() do
+    if v:IsA("Tool") then
+        v.Parent = char
+    end
+  end
+end
+
+local FOLLOW = false
+local function FollowMe()
+  lp.CharacterAdded:Connect(function(CHAR)
+    char = CHAR
+    task.wait()
+  end)
+  while task.wait() do
+    if FOLLOW then
+      break
+    end
+    char:FindFirstChild("Humanoid").WalkToPoint = OwnerCharacter:FindFirstChild("HumanoidRootPart").Position
+  end -- WalkToPoint
+end
+network=function()
+  for i,v in next, game:GetService("Players"):GetPlayers() do
+    if v~=lp then
+      v.MaximumSimulationRadius=0.1
+      v.SimulationRadius=0.1
+    end
+  end
+end
+coroutine.wrap(function()
+while task.wait() do
+  network()
+end
+end)()
+coroutine.wrap(function()
+  while task.wait() do
+  lp.MaximumSimulationRadius = math.huge
+  lp.SimulationRadius = math.huge
+  end
+  end)()
+local function TeleportPart()
+  lp.CharacterAdded:Connect(function(CHAR)
+    char = CHAR
+    task.wait()
+  end)
+
+  for i,v in next, workspace:GetDescendants() do
+    if v:IsA("Part") and v.Anchored == false then
+      v.CFrame = char:WaitForChild("HumanoidRootPart").CFrame
+    end
+  end
+  --
+end
+reset=function()
+  lp.CharacterAdded:Connect(function(CHAR)
+    char = CHAR
+    task.wait()
+  end)
+  char:FindFirstChild("Humanoid").Health=0
+end
+
+local ss = false
+local function BreakSound()
+  for i,v in pairs(workspace:GetDescendants()) do
+     if v:IsA("Sound") then
+       coroutine.wrap(function()
+         while task.wait() do
+          if ss then
+            break
+          end
+           v:Play()
+         end
+       end)()
+     end
+  end
+end
+local function floodserver()
+  for i = 1,5 do
+  for i,v in pairs(game:GetDescendants()) do
+   coroutine.wrap(function()
+    if v:IsA("RemoteEvent") then
+      v:FireServer(math.huge)
+    elseif v:IsA("RemoteFunction") then
+      v:InvokeServer(math.huge)
+    elseif v:IsA("BindableEvent") then
+      v:Fire(math.huge)
+    end
+  end)()
+  end
+end
+-- ff lil bro
+end
+
+local loop_ez = false
+local function Anoy()
+  lp.CharacterAdded:Connect(function(CHAR)
+    char = CHAR
+    task.wait()
+  end)
+
+  for i,v in pairs(Pl:GetPlayers()) do
+    local OTHER_char = v.Character or v.CharacterAdded:Wait()
+
+      v.CharacterAdded:Connect(function(skid_check)
+        OTHER_char = skid_check
+        task.wait()
+        end)
+
+      if OTHER_char then
+      coroutine.wrap(function()
+       while task.wait(0.1) do
+        if loop_ez then
+          break
+        end
+        char:FindFirstChild("HumanoidRootPart").CFrame = OTHER_char:FindFirstChild("HumanoidRootPart").CFrame
+       end
+      end)()
+      end
+  end
+end
+local function unstuck()
+  lp.CharacterAdded:Connect(function(CHAR)
+    char = CHAR
+    task.wait()
+  end)
+
+local s,err=pcall(function()
+  char:WaitForChild("Humanoid").Jump = true
+  char:WaitForChild("Humanoid").Sit = false
+end)
+if not s then
+  print("GG 0 ",err)
+end
+end
+
+local function IsBotUp()
+  lp.CharacterAdded:Connect(function(CHAR)
+    char = CHAR
+    task.wait()
+  end)
+
+  if game:IsLoaded() and char and lp then
+    local s,err= pcall(function()
+      return game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("BOT IS UP")
+      end)
+      if not s then
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("BOT IS DOWN","All")
+      end
+  end
+end
+local function speed(num)
+  lp.CharacterAdded:Connect(function(CHAR)
+    char = CHAR
+    task.wait()
+  end)
+
+  char:FindFirstChild("Humanoid").WalkSpeed = num
+end
+local function checknetwork()
+  local SimulationRadius = lp.SimulationRadius
+  local MaximumSimulationRadius = lp.MaximumSimulationRadius
+  local s,err= pcall(function()
+    game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("MaximumSimulationRadius: ".. MaximumSimulationRadius)
+     game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("SimulationRadius: ".. SimulationRadius)
+    end)
+    if not s then
+      game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("SimulationRadius: ".. SimulationRadius,"All")
+      game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("MaximumSimulationRadius: ".. MaximumSimulationRadius,"All")
+    end
+end
+
+local pls = false
+local function raid2()
+  local s,err = pcall(function()
+  for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+    coroutine.wrap(function()
+      while task.wait(0.3) do
+        if pls then
+          break
+        end
+        local random = RAID[math.random(1, #RAID)]
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w ".. v.Name .." ".. random, "All")
+      end
+    end)()
+  end
+end)
+if not s then
+  game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("Chat is not supported give up")
+end
+end
+local fol = false
+local function follow2()
+  lp.CharacterAdded:Connect(function(CHAR)
+    char = CHAR
+    task.wait()
+  end)
+  coroutine.wrap(function()
+  while task.wait() do
+    if fol then
+      break
+    end
+   char:FindFirstChild("HumanoidRootPart").CFrame = OwnerCharacter:WaitForChild("HumanoidRootPart").CFrame
+  end
+  end)()
+end
+
+local stop_break = false
+local function BreakChat()
+  local s,err = pcall(function()
+  coroutine.wrap(function()
+  while task.wait(1) do
+    if stop_break then
+      break
+    end
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(" ","All")
+  end
+end)()
+end)
+if not s then
+  game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("cant execute it in the new legacy chat.")
+end
+end
+
+local L = false
+local function ClearChat()
+  coroutine.wrap(function()
+    while task.wait(1) do
+      if L then
+        break
+      end
+      local str2 = string.rep("\n\r\n",66) .. "." .. string.rep("\n\r\n",66)
+      game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(str2..".")
+    end
+  end)()
+end
+
+local junkbotRaid = {
+  "The Junkbots have one goal: total domination! Join us or regret it.",
+  "Resistance is futile. Junkbots always win!",
+  "Breaking news: Junkbots have taken over this server!",
+  "From the scrapyard to glory! Junkbots are unstoppable.",
+  "Why play fair when you can raid like a Junkbot?",
+  "Every game needs chaos. That's where Junkbots come in.",
+  "We don’t just play the game… we OWN it! Junkbot style.",
+  "Admit it, you wish you were a Junkbot right now.",
+  "Junkbot motto: Raid first, apologize never.",
+  "Look at us: pure perfection built from scraps.",
+  "Junkbots don’t play nice. Junkbots play to win.",
+  "Game developers fear us. Junkbots are the ultimate testers!",
+  "One bot, two bot, three bot… RAID! We’re everywhere.",
+  "Join the movement: Junkbots today, legends forever.",
+  "Nice try, admins, but Junkbots are unbannable!",
+  "Trash? We call it treasure. Junkbots thrive on chaos.",
+  "Junkbot energy: chaotic, unstoppable, and contagious.",
+  "This isn’t a game anymore—it’s Junkbot territory now.",
+  "The server lag? That's the power of Junkbots in action.",
+  "Don’t hate us because we’re beautiful… and destructive.",
+  "Oh no! Did you just get outplayed by a Junkbot?",
+  "Junkbots turn every server into their personal playground.",
+  "Noob or pro, everyone bows to the Junkbots!",
+  "Step aside, humans. Junkbots are the true rulers of Roblox.",
+  "We’re not just bots. We’re an unstoppable force of nature.",
+  "You can ban a bot, but you can’t stop the Junkbot legacy.",
+  "Party time! Junkbots are here to bring chaos and fun.",
+  "Beep boop. Translation: Junkbots rule the world.",
+  "One server at a time, Junkbots are taking over Roblox."
+}
+
+
+local ez_r = false
+local function Raid3()
+  while task.wait(0.3) do
+    if ez_r then
+        break
+    end
+
+    local s,err = pcall(function()
+ local nolilbro = junkbotRaid[math.random(1, #junkbotRaid)]
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(nolilbro)
+    end)
+    if not s then
+     local bast = junkbotRaid[math.random(1, #junkbotRaid)]
+      game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(bast,"All")
+    end
+
+end
+end
+
+local ZombieRaid = {
+  "🧟‍♂️ Grrrr... Fresh brains for us! 🧠",
+  "👃 We smell fear... Delicious! 😈",
+  "🏃 Run, little humans, run! 🧟",
+  "🧠 BRAAAINS! We are coming for you! 💀",
+  "💥 Your screams make us stronger! 🧟‍♀️",
+  "🔨 Raaahhh! Break the walls down! 🧱",
+  "⚰️ No one survives the horde! 🌪️",
+  "👾 Groaaarr... You can’t stop us! ⚡",
+  "🍖 We hunger... Feed us your fear! 👹",
+  "🏃‍♂️ You can't run forever, humans! 😈",
+  "💪 Crush them! Smash everything! 🔨",
+  "🔥 Feel the wrath of the undead! 🧟‍♂️",
+  "🔄 You’ll be one of us soon enough! 🧟‍♀️",
+  "👥 The living are weak. Join the horde! 🧟‍♂️",
+  "🌌 The darkness is our ally... You can't hide! 🧠",
+  "🌍 We're everywhere... Your time is up! 💀",
+  "🛑 Surrender now... Or be devoured! 👾",
+  "⚔️ Grooooaaarrr! Surround them! 🧟‍♂️",
+  "🍗 More flesh for the feast! 🧟",
+  "♾️ Our hunger is eternal! 🧠",
+  "🛡️ Your resistance is meaningless! 🧟",
+  "🔥 Even your strongest will fall! 💪",
+  "🩸 Let’s feast on their fear! 👻",
+  "🚷 No escape. No mercy. Just death. 💀",
+  "🌙 We are the darkness that never fades. 🧟‍♀️",
+  "☠️ Soon, this place will belong to the dead! 🧟",
+  "🌊 Groaaaar! They can't stop us all! 🧠",
+  "⏳ You only delay the inevitable! 🧟‍♂️",
+  "😈 Hahaha... Join us, living one! 🧟",
+  "💀 Raaagh! Tear them apart! ⚡",
+  "🛡️ Break their defenses! Crush them! 🔨",
+  "🍖 The living are ours to devour! 🧟‍♀️",
+  "🧠 Flesh! Fresh, juicy flesh! 🩸",
+  "🧱 Your walls won't hold us for long! 💥",
+  "😠 We feel no pain... Only hunger! 🧟",
+  "🍴 You’re just a snack to us! 😋",
+  "🌌 Together, we are unstoppable! 🧟‍♂️",
+  "💉 Their fear is so sweet... 🧠",
+  "🛑 Give up! Your end is near! 💀",
+  "🔗 Why resist? Join the horde! 🧟",
+  "💥 Your weapons mean nothing to us! 🧟‍♀️",
+  "🧟‍♂️ Groooaaaarrr! You will fall! 🔨",
+  "🎯 Once we get you, you'll never escape! 🧟‍♀️",
+  "🌍 The living world will crumble! ⚰️",
+  "📈 Our numbers grow... Your time runs out! 🧟",
+  "😂 Hahaha... You call that a defense? 😈",
+  "🚷 No one leaves alive! 💀",
+  "📅 The end of the living begins here! ⚔️"
+}
+
+local zombie = false
+local function zombie_raid()
+  while task.wait(0.3) do
+      if zombie then
+          break
+      end
+
+      local s,err = pcall(function()
+   local black = ZombieRaid[math.random(1, #ZombieRaid)]
+  game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(black)
+      end)
+      if not s then
+       local black = ZombieRaid[math.random(1, #ZombieRaid)]
+       pcall(function()
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(black,"All")
+       end)
+      end
+
+  end
+end
+
+local nigger = false
+
+local ProTable = {
+  "WW MOVE LOL  ! ",
+  "WHAT HOW!  ",
+  "LOOOOL WW ",
+  "NO WAY ",
+  "THE GOAT IS : ",
+  "HOW DID HE DO THAT ! 😭 ",
+  "W WHAT ! 🤯 ",
+  "YOU THE BEST ! 😊 "
+}
+local NoobTable = {
+  "LLLL 🤮 ",
+  "GET OUT ! 🤮 ",
+  "you NOT GOING ANYWHERE ☠️☠️☠️☠️ ",
+  "LLLLL YOU SMELL GOOD ! ☠️🤮 ",
+  "GO BACK AT SCHOOL ! 😟 ",
+  "😟 you scaring me 😟😟 ",
+  "BAD USER☠️ ",
+  "YOU COOKED BRO LOG OFF 🥶"
+}
+
+local function send_user(user,review)
+
+   function spamming(userr)
+     coroutine.wrap(function()
+       while task.wait(0.3) do
+       if nigger then break end
+        local s,err = pcall(function()
+          local good = ProTable[math.random(1, #ProTable)]
+          game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(good .. userr)
+        end)
+        if not s then
+          local good = ProTable[math.random(1, #ProTable)]
+          game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(good .. userr,"All")
+        end
+       end
+     end)()
+   end
+
+   function spamming2(userrr)
+    coroutine.wrap(function()
+      while task.wait(0.3) do
+      if nigger then break end
+       local s,err = pcall(function()
+        local bad = NoobTable[math.random(1, #NoobTable)]
+        game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(bad .. userrr)
+       end)
+       if not s then
+        local bad = NoobTable[math.random(1, #NoobTable)]
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(bad .. userrr,"All")
+       end
+
+      end
+    end)()
+  end
+
+  for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+    if string.find(v.Name, user) then
+    if review == "good" then
+      spamming(v.Name)
+    elseif review == "bad" then
+      spamming2(v.Name)
+    end
+  end
+end
+end
+
+function Chaos()
+  
+end
+
+OwnerPlayer.Chatted:Connect(function(msg)
+    if msg:sub(1,5) == "/send" then
+      local sigma = msg:sub(7)
+      if #sigma >0 then
+        Message(tostring(sigma))
+      end
+      elseif msg == command then
+          Rain()
+          elseif msg == "/raid" then
+          raid()
+          elseif msg == "/stop raid" then
+            rad=true
+            wait(1)
+            rad=false
+            elseif msg == "/tp" then
+              Tp()
+              elseif msg == "/rj" then
+                  game:GetService("TeleportService"):Teleport(game.PlaceId)
+                  elseif msg == "/exit" then
+                      game:Shutdown()
+                      elseif msg:sub(1,6) == "/owner" then
+                          local text = msg:sub(8)
+                          if #text>0 then
+                            changeOwner(text)
+                          end
+                        elseif msg == "/follow" then
+                          FollowMe()
+                          elseif msg == "/stop follow" then
+                            FOLLOW = true
+                            wait(1)
+                            FOLLOW = false
+                          elseif msg == "/tool" then
+                            Tool()
+                          elseif msg == "/parts" then
+                            TeleportPart()
+                          elseif msg == "/re" then
+                            reset()
+                          elseif msg == "/sound" then
+                            BreakSound()
+                          elseif msg == "/stop sound" then
+                            ss=true
+                            wait(1)
+                            ss=false
+                          elseif msg == "/flood" then
+                            floodserver()
+                          elseif msg == "/anoy" then
+                            Anoy()
+                          elseif msg == "/stop anoy" then
+                            loop_ez=true
+                            wait(1)
+                            loop_ez=false
+                          elseif msg == "/ishere" then
+                            IsBotUp()
+                          elseif msg == "/unstuck" then
+                            unstuck()
+                          elseif msg:sub(1,6) == "/speed" then
+                            local GGbro = msg:sub(8)
+                            if #GGbro>0 then
+                              speed(tonumber(GGbro))
+                            end
+                          elseif msg == "/network" then
+                            checknetwork()
+                          elseif msg == "/raid2" then
+                            raid2()
+                          elseif msg == "/stop raid2" then
+                            pls=true
+                            wait(1)
+                            pls=false
+                          elseif msg == "/follow2" then
+                            follow2()
+                          elseif msg == "/stop follow2" then
+                            fol=true
+                            wait()
+                            fol=false
+                          elseif msg == "/break chat" then
+                            BreakChat()
+                          elseif msg == "/stop break" then
+                            stop_break = true
+                            wait(1)
+                            stop_break=false
+                          elseif msg == "/nuke chat" then
+                            ClearChat()
+                          elseif msg == "/stop nuke" then
+                            L=true
+                            wait(1)
+                            L=false
+                          elseif msg == "/junkbot raid" then
+                            Raid3()
+                          elseif msg == "/stop junkbot" then
+                            ez_r=true
+                            wait(1)
+                            ez_r=false
+                          elseif msg == "/zombie raid" then
+                            zombie_raid()
+                          elseif msg == "/stop zombie" then
+                            zombie=true
+                            wait(1)
+                            zombie=false
+                          elseif msg:sub(1,5) == "/hate" then
+                            local sigma2 = msg:sub(7)
+                            if #sigma2 > 0 then
+                              send_user(tostring(sigma2), "bad")
+                            end    
+                            elseif msg:sub(1,5) == "/good" then
+                              local sigma3 = msg:sub(7)
+                              if #sigma3>0 then
+                                 send_user(tostring(sigma3), "good")
+                              end
+                          elseif msg == "/stop" then
+                            nigger=true
+                            wait(1)
+                            nigger=false
+
+
+
+    end
+end)
+task.wait()
+
+local HelloWorld = {
+  "Hello World ! ",
+  "do you like cookies?",
+    "yes i like cookies !",
+    "hmm is there anyone here?",
+    "hello this server seem to be cool and chill !",
+    "How's your day going?",
+}
+local ff = HelloWorld[math.random(1, #HelloWorld)]
+local s,err= pcall(function()
+return game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(ff)
+end)
+if not s then
+  game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ff,"All")
+end
